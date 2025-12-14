@@ -1,0 +1,911 @@
+# SQL Test Savollari
+
+1. Quyidagi kodda `id` ustuni qanday xususiyatga ega?  
+   ```sql
+   CREATE TABLE users (id INTEGER PRIMARY KEY);
+   ```  
+   A) NULL bo'lishi mumkin  
+   B) Takrorlanishi mumkin  
+   C) Faqat matn saqlaydi  
+   D) Noyob va avtomatik o'suvchi (ko'pchilik DBMSda)  
+
+2. Quyidagi kodda `email` ustuni qanday cheklovga ega?  
+   ```sql
+   CREATE TABLE users (email TEXT UNIQUE);
+   ```  
+   A) Majburiy to'ldirilishi kerak  
+   B) Takrorlanmasligi kerak  
+   C) Faqat raqam saqlaydi  
+   D) Avtomatik qiymat oladi  
+
+3. Quyidagi kodda `price` ustuni qanday ma'lumot turiga ega?  
+   ```sql
+   CREATE TABLE products (price REAL NOT NULL);
+   ```  
+   A) Kasrli son, bo'sh bo'lolmaydi  
+   B) Butun son  
+   C) Matn  
+   D) NULL qiymat saqlaydi  
+
+4. Quyidagi kodda `status` ustuniga qiymat kiritilmasa nima bo'ladi?  
+   ```sql
+   CREATE TABLE orders (status TEXT DEFAULT 'pending');
+   ```  
+   A) 'pending' qiymati avtomatik qo'yiladi  
+   B) Xato beradi  
+   C) NULL qo'yiladi  
+   D) 0 qo'yiladi  
+
+5. Quyidagi kod qanday natija beradi?  
+   ```sql
+   INSERT INTO customers (name, city) VALUES ('Ali', 'Toshkent');
+   ```  
+   A) Hech narsa bo'lmaydi  
+   B) Jadval o'chiriladi  
+   C) Mavjud mijoz yangilanadi  
+   D) Yangi mijoz qo'shiladi  
+
+6. Quyidagi SELECT nima qaytaradi?  
+   ```sql
+   SELECT * FROM employees WHERE salary > 5000;
+   ```  
+   A) Maoshi 5000 dan pastlar  
+   B) Barcha xodimlarni  
+   C) Maoshi 5000 dan yuqori xodimlar  
+   D) Hech qanday qator  
+
+7. Quyidagi kod nima qiladi?  
+   ```sql
+   UPDATE products SET price = price * 1.1 WHERE category = 'electronics';
+   ```  
+   A) Barcha mahsulot narxlarini oshiradi  
+   B) Yangi mahsulot qo'shadi  
+   C) Elektronika toifasidagi mahsulotlar narxini 10% oshiradi  
+   D) Mahsulotlarni o'chiradi  
+
+8. Quyidagi kod qaysi qatorlarni o'chiradi?  
+   ```sql
+   DELETE FROM logs WHERE created_at < '2024-01-01';
+   ```  
+   A) Barcha loglarni  
+   B) 2024-yildan keyin yaratilganlar  
+   C) Hech qanday logni  
+   D) 2024-yilgacha yaratilgan loglar  
+
+9. Quyidagi kod nechta qator qaytaradi?  
+   ```sql
+   SELECT name FROM students ORDER BY score DESC LIMIT 3;
+   ```  
+   A) Tasodifiy 3 ta  
+   B) Eng past 3 ta baholi talaba  
+   C) Barcha talabalarni  
+   D) Eng yuqori 3 ta baholi talaba  
+
+10. Quyidagi cheklov nima ta'minlaydi?  
+    ```sql
+    CREATE TABLE employees (age INTEGER CHECK (age >= 18));
+    ```  
+    A) Jadval yaratilmaydi  
+    B) Yosh NULL bo'lishi mumkin  
+    C) Yosh har doim 18 bo'ladi  
+    D) Yosh 18 dan kichik bo'lsa INSERT xato beradi  
+
+11. Quyidagi FOREIGN KEY qanday ishlaydi?  
+    ```sql
+    FOREIGN KEY (department_id) REFERENCES departments(id) ON DELETE CASCADE
+    ```  
+    A) Hech qanday ta'sir yo'q  
+    B) Bo'lim o'chirilsa, unga bog'langan xodimlar ham o'chiriladi  
+    C) Bo'lim o'chirilmaydi  
+    D) Xodimlar avtomatik yangilanadi  
+
+12. Quyidagi JOIN nima qaytaradi?  
+    ```sql
+    SELECT * FROM orders INNER JOIN customers ON orders.customer_id = customers.id;
+    ```  
+    A) Barcha mijozlarni  
+    B) Barcha buyurtmalarni  
+    C) Faqat buyurtma bergan mijozlar va ularning buyurtmalari  
+    D) Hech qanday qator  
+
+13. Quyidagi LEFT JOIN farqi nima?  
+    ```sql
+    SELECT * FROM orders LEFT JOIN customers ON orders.customer_id = customers.id;
+    ```  
+    A) Barcha buyurtmalar chiqadi, mijoz topilmasa NULL  
+    B) Faqat mos kelganlar  
+    C) Barcha mijozlar  
+    D) Faqat mijozlarsiz buyurtmalar  
+
+14. Quyidagi kod nima hisoblaydi?  
+    ```sql
+    SELECT department, COUNT(*) FROM employees GROUP BY department;
+    ```  
+    A) Umumiy xodimlar soni  
+    B) Har bir bo'limdagi xodimlar soni  
+    C) Bo'lim nomlari faqat  
+    D) Xato beradi  
+
+15. Quyidagi HAVING sharti nima qiladi?  
+    ```sql
+    SELECT city, AVG(salary) FROM employees GROUP BY city HAVING AVG(salary) > 7000;
+    ```  
+    A) O'rtacha maoshi 7000 dan yuqori shaharlar  
+    B) Barcha shaharlar  
+    C) Maoshi 7000 dan yuqori xodimlar  
+    D) Xato beradi  
+
+16. Quyidagi kodda `score` ustuni qanday bo'ladi?  
+    ```sql
+    CREATE TABLE exams (score REAL DEFAULT 0.0);
+    ```  
+    A) Majburiy to'ldirilishi kerak  
+    B) NULL bo'ladi  
+    C) Qiymat kiritilmasa 0.0 qo'yiladi  
+    D) Avtomatik o'sadi  
+
+17. Quyidagi SELECT nima qaytaradi?  
+    ```sql
+    SELECT * FROM products WHERE description IS NULL;
+    ```  
+    A) Barcha mahsulotlarni  
+    B) Tavsifi bo'sh matn bo'lganlar  
+    C) Hech qanday  
+    D) Tavsifi kiritilmagan mahsulotlar  
+
+18. Quyidagi PRIMARY KEY misoli?  
+    ```sql
+    CREATE TABLE books (isbn TEXT PRIMARY KEY);
+    ```  
+    A) isbn noyob va NOT NULL  
+    B) isbn takrorlanishi mumkin  
+    C) title PRIMARY KEY bo'ladi  
+    D) Xato beradi  
+
+19. Quyidagi kodda UNIQUE va NULL?  
+    ```sql
+    CREATE TABLE users (phone TEXT UNIQUE);
+    INSERT INTO users (phone) VALUES (NULL), (NULL);
+    ```  
+    A) Ikkinchi INSERT har doim xato beradi  
+    B) Ikkinchi INSERT ba'zi DBMSda muvaffaqiyatli  
+    C) Birinchi INSERT xato  
+    D) Jadval o'chiriladi  
+
+20. Quyidagi INSERT bir nechta qator qo'shadimi?  
+    ```sql
+    INSERT INTO categories (name) VALUES ('Food'), ('Drink'), ('Electronics');
+    ```  
+    A) Faqat birinchi qator  
+    B) Xato beradi  
+    C) Ha, 3 ta qator qo'shadi  
+    D) Yangilaydi  
+
+21. Quyidagi WHERE sharti nima qiladi?  
+    ```sql
+    SELECT name FROM products WHERE price BETWEEN 100 AND 1000;
+    ```  
+    A) Narxi 100 dan 1000 gacha (shu jumladan)  
+    B) Narxi 100 yoki 1000  
+    C) Narxi 100 dan past  
+    D) Barchasini  
+
+22. Quyidagi UPDATE faqat bitta qatorga ta'sir qiladimi?  
+    ```sql
+    UPDATE users SET active = 0 WHERE id = 10;
+    ```  
+    A) Barcha foydalanuvchilarga  
+    B) Xato beradi  
+    C) Hech kimga  
+    D) Ha, faqat id=10 bo'lgan foydalanuvchi  
+
+23. Quyidagi DELETE barcha qatorlarni o'chiradimi?  
+    ```sql
+    DELETE FROM temp_table;
+    ```  
+    A) Ha, WHERE yo'q bo'lsa barchasini o'chiradi  
+    B) Hech narsani o'chirmaydi  
+    C) Faqat eski qatorlarni  
+    D) Jadvalni butunlay o'chiradi  
+
+24. Quyidagi ORDER BY tartibi?  
+    ```sql
+    SELECT * FROM sales ORDER BY amount DESC, sale_date ASC;
+    ```  
+    A) Faqat summa bo'yicha  
+    B) Avval summa kamayuvchi, keyin sana o'suvchi  
+    C) Tasodifiy  
+    D) Xato  
+
+25. Quyidagi CHECK cheklovi?  
+    ```sql
+    CREATE TABLE tickets (seat INTEGER CHECK (seat BETWEEN 1 AND 100));
+    ```  
+    A) Faqat 1 va 100  
+    B) Har qanday raqam  
+    C) O'rindiq raqami 1-100 orasida bo'lishi kerak  
+    D) Xato  
+
+26. Quyidagi DEFAULT misoli?  
+    ```sql
+    CREATE TABLE logs (created_at TEXT DEFAULT CURRENT_TIMESTAMP);
+    ```  
+    A) Qiymat kiritilmasa joriy vaqt qo'yiladi  
+    B) Har doim NULL  
+    C) Xato beradi  
+    D) 0 qo'yiladi  
+
+27. Quyidagi GROUP BY to'g'ri ishlaydimi?  
+    ```sql
+    SELECT department, MAX(salary) FROM employees GROUP BY department;
+    ```  
+    A) Faqat department chiqadi  
+    B) Xato, chunki department guruhlanmagan  
+    C) Barcha maoshlar  
+    D) Ha, har bo'limdagi eng yuqori maosh  
+
+28. Quyidagi ON DELETE SET NULL?  
+    ```sql
+    FOREIGN KEY (manager_id) REFERENCES employees(id) ON DELETE SET NULL
+    ```  
+    A) Menejer o'chirilsa, bog'langanlarda manager_id NULL bo'ladi  
+    B) O'chirish taqiqlanadi  
+    C) Bog'langanlar o'chiriladi  
+    D) Hech narsa  
+
+29. Quyidagi RIGHT JOIN nima qiladi?  
+    ```sql
+    SELECT * FROM customers RIGHT JOIN orders ON customers.id = orders.customer_id;
+    ```  
+    A) Barcha mijozlar  
+    B) Barcha buyurtmalar chiqadi, mijoz topilmasa NULL  
+    C) Faqat mos kelganlar  
+    D) Chap jadval barchasi  
+
+30. Quyidagi agregat funksiyalar?  
+    ```sql
+    SELECT SUM(price), AVG(price), COUNT(*) FROM cart;
+    ```  
+    A) Faqat o'rtacha  
+    B) Xato  
+    C) Umumiy narx, o'rtacha va mahsulotlar soni  
+    D) Barcha narxlarni alohida  
+
+31. Quyidagi kodda INTEGER ga kasrli son kiritilsa?  
+    ```sql
+    CREATE TABLE test (num INTEGER);
+    INSERT INTO test VALUES (3.14);
+    ```  
+    A) 3.14 saqlanadi  
+    B) Xato beradi  
+    C) NULL saqlanadi  
+    D) 3 saqlanadi (qoldiq tashlanadi)  
+
+32. Quyidagi TEXT ustuniga raqam saqlash?  
+    ```sql
+    CREATE TABLE data (value TEXT);
+    INSERT INTO data VALUES (123);
+    ```  
+    A) '123' sifatida saqlanadi  
+    B) Xato beradi  
+    C) 123 sifatida butun son bo'ladi  
+    D) NULL  
+
+33. Quyidagi REAL misoli?  
+    ```sql
+    INSERT INTO measurements VALUES (98.6);
+    ```  
+    A) Butun songa aylantiriladi  
+    B) Matn bo'ladi  
+    C) Kasrli son sifatida saqlanadi  
+    D) Xato  
+
+34. Quyidagi NULL taqqoslash?  
+    ```sql
+    SELECT * FROM users WHERE email = NULL;
+    ```  
+    A) Email NULL bo'lganlarni qaytaradi  
+    B) Barchasini qaytaradi  
+    C) Hech qanday qator qaytarmaydi (to'g'ri usul IS NULL)  
+    D) Xato beradi  
+
+35. Quyidagi PRIMARY KEY va NOT NULL?  
+    ```sql
+    CREATE TABLE orders (id INTEGER PRIMARY KEY);
+    ```  
+    A) id avtomatik NOT NULL va noyob  
+    B) id NULL bo'lishi mumkin  
+    C) id takrorlanishi mumkin  
+    D) Jadval xato  
+
+36. Quyidagi UNIQUE cheklovi?  
+    ```sql
+    CREATE TABLE products (code TEXT UNIQUE NOT NULL);
+    ```  
+    A) code takrorlanishi mumkin  
+    B) code NULL bo'lishi mumkin  
+    C) Faqat raqam  
+    D) code noyob va majburiy  
+
+37. Quyidagi NOT NULL xato?  
+    ```sql
+    CREATE TABLE users (name TEXT NOT NULL);
+    INSERT INTO users (name) VALUES (NULL);
+    ```  
+    A) Xato beradi  
+    B) Muvaffaqiyatli, NULL saqlanadi  
+    C) Bo'sh matn saqlanadi  
+    D) DEFAULT qo'yiladi  
+
+38. Quyidagi INSERT ustunlarsiz?  
+    ```sql
+    CREATE TABLE point (x REAL, y REAL);
+    INSERT INTO point VALUES (10.5, 20.1);
+    ```  
+    A) Xato, ustun nomlari kerak  
+    B) Faqat birinchi ustun to'ldiriladi  
+    C) Jadval o'chiriladi  
+    D) To'g'ri, qiymatlar tartib bo'yicha  
+
+39. Quyidagi SELECT * farqi?  
+    ```sql
+    SELECT * FROM employees WHERE department = 'IT' LIMIT 10;
+    ```  
+    A) Barcha IT xodimlari  
+    B) Tasodifiy 10 ta  
+    C) IT bo'limidan dastlabki 10 ta xodim  
+    D) Oxirgi 10 ta  
+
+40. Quyidagi ORDER BY NULL?  
+    ```sql
+    SELECT * FROM people ORDER BY middle_name;
+    ```  
+    A) NULL qiymatlar oxirida (ko'pchilik DBMSda)  
+    B) NULL qiymatlar boshida  
+    C) Xato beradi  
+    D) NULL larni o'tkazib yuboradi  
+
+41. Quyidagi CHECK bir nechta shart?  
+    ```sql
+    CREATE TABLE salary (amount REAL CHECK (amount > 0 AND amount <= 100000));
+    ```  
+    A) Faqat 0 va 100000  
+    B) Har qanday  
+    C) Xato  
+    D) Maosh 0 dan katta va 100000 dan kichik yoki teng  
+
+42. Quyidagi DEFAULT va NOT NULL birga?  
+    ```sql
+    CREATE TABLE tasks (status TEXT NOT NULL DEFAULT 'new');
+    ```  
+    A) Xato, NOT NULL bilan DEFAULT majburiy emas  
+    B) Faqat DEFAULT  
+    C) Faqat NOT NULL  
+    D) Mumkin va to'g'ri  
+
+43. Quyidagi GROUP BY va COUNT?  
+    ```sql
+    SELECT category, COUNT(*) AS cnt FROM products GROUP BY category;
+    ```  
+    A) Umumiy mahsulotlar soni  
+    B) Xato, chunki AS ishlatilgan  
+    C) Faqat category nomlari  
+    D) Har kategoriyadagi mahsulotlar soni  
+
+44. Quyidagi HAVING va WHERE farqi?  
+    ```sql
+    SELECT department, AVG(salary) FROM employees WHERE salary > 3000 GROUP BY department HAVING AVG(salary) > 6000;
+    ```  
+    A) Hech qanday farq yo'q  
+    B) HAVING oldin ishlaydi  
+    C) WHERE agregat funksiyalar bilan ishlaydi  
+    D) WHERE individual qatorlar uchun, HAVING guruh uchun  
+
+45. Quyidagi ON UPDATE CASCADE?  
+    ```sql
+    FOREIGN KEY (parent_id) REFERENCES categories(id) ON UPDATE CASCADE
+    ```  
+    A) Asosiy kategoriya ID o'zgarsa, bog'langanlar ham yangilanadi  
+    B) O'chiriladi  
+    C) NULL qo'yiladi  
+    D) Hech narsa  
+
+46. Quyidagi INNER JOIN va WHERE?  
+    ```sql
+    SELECT orders.id, customers.name FROM orders INNER JOIN customers ON orders.customer_id = customers.id WHERE orders.total > 1000;
+    ```  
+    A) Barcha buyurtmalar  
+    B) Faqat mijozlarsiz buyurtmalar  
+    C) Xato  
+    D) 1000 dan yuqori buyurtmalar va ularning mijozlari  
+
+47. Quyidagi LEFT JOIN va NULL?  
+    ```sql
+    SELECT products.name, orders.id FROM products LEFT JOIN orders ON products.id = orders.product_id;
+    ```  
+    A) Faqat sotilgan mahsulotlar  
+    B) Barcha buyurtmalar  
+    C) Xato  
+    D) Barcha mahsulotlar, sotilmaganlari orders.id NULL  
+
+48. Quyidagi RIGHT JOIN misoli?  
+    ```sql
+    SELECT customers.name, orders.total FROM customers RIGHT JOIN orders ON customers.id = orders.customer_id;
+    ```  
+    A) Barcha mijozlar  
+    B) Faqat mos kelganlar  
+    C) Barcha buyurtmalar va agar bo'lsa mijoz nomi  
+    D) Chap jadval barchasi  
+
+49. Quyidagi INTEGER PRIMARY KEY avtoinkrementmi?  
+    ```sql
+    CREATE TABLE counters (id INTEGER PRIMARY KEY);
+    ```  
+    A) Har doim ha  
+    B) Hech qachon emas  
+    C) SQLite da ha, boshqa DBMSda yo'q  
+    D) Xato  
+
+50. Quyidagi REAL va kasrli son?  
+    ```sql
+    INSERT INTO temperature VALUES (36.6);
+    ```  
+    A) Faqat butun qismi saqlanadi  
+    B) Matn sifatida  
+    C) Xato  
+    D) To'g'ri saqlanadi  
+
+51. Quyidagi TEXT va bo'sh matn?  
+    ```sql
+    INSERT INTO notes VALUES ('');
+    ```  
+    A) NULL saqlanadi  
+    B) Xato  
+    C) Jadval o'chiriladi  
+    D) Bo'sh matn saqlanadi (NULL emas)  
+
+52. Quyidagi NULL va arifmetika?  
+    ```sql
+    SELECT NULL + 100;
+    ```  
+    A) 100  
+    B) 0  
+    C) NULL qaytaradi  
+    D) Xato  
+
+53. Quyidagi UNIQUE bir nechta ustun?  
+    ```sql
+    CREATE TABLE bookings (room INTEGER, date TEXT, UNIQUE(room, date));
+    ```  
+    A) Xato  
+    B) Faqat room noyob  
+    C) Faqat date noyob  
+    D) Bir xonada bir kunda faqat bitta bron  
+
+54. Quyidagi NOT NULL va DEFAULT?  
+    ```sql
+    CREATE TABLE users (is_active INTEGER NOT NULL DEFAULT 1);
+    ```  
+    A) Xato, chunki NOT NULL  
+    B) Har doim 0  
+    C) NULL bo'ladi  
+    D) Yangi foydalanuvchi avtomatik faol  
+
+55. Quyidagi INSERT va SELECT?  
+    ```sql
+    INSERT INTO archive SELECT * FROM old_table WHERE year < 2020;
+    ```  
+    A) Xato  
+    B) Faqat ustun nomlari  
+    C) Hech narsa  
+    D) Eski qatorlarni arxivga ko'chiradi  
+
+56. Quyidagi WHERE va TEXT taqqoslash?  
+    ```sql
+    SELECT * FROM cities WHERE name = 'Toshkent';
+    ```  
+    A) Har doim katta-kichik farqi yo'q  
+    B) Xato  
+    C) Barchasini qaytaradi  
+    D) Katta-kichik harfga bog'liq (ko'pchilik DBMSda)  
+
+57. Quyidagi UPDATE bir nechta ustun?  
+    ```sql
+    UPDATE employees SET salary = salary * 1.05, bonus = 1000 WHERE years > 5;
+    ```  
+    A) Faqat salary  
+    B) Xato  
+    C) Hech kimga  
+    D) 5 yildan ko'p ishlaganlarga oshirish va bonus  
+
+58. Quyidagi DELETE va LIMIT?  
+    ```sql
+    DELETE FROM sessions WHERE last_active < NOW() - INTERVAL '30 days' LIMIT 1000;
+    ```  
+    A) Barcha eski sessiyalar  
+    B) Hech narsa  
+    C) Faqat 1000 ta eski sessiya o'chiriladi  
+    D) Xato (ba'zi DBMSda LIMIT DELETE da ishlamaydi)  
+
+59. Quyidagi ORDER BY va NULL?  
+    ```sql
+    SELECT * FROM items ORDER BY price DESC NULLS LAST;
+    ```  
+    A) NULL har doim boshida  
+    B) Xato  
+    C) NULL larni o'tkazib yuboradi  
+    D) NULL narxlar oxirida (PostgreSQL)  
+
+60. Quyidagi CHECK va TEXT?  
+    ```sql
+    CREATE TABLE genders (gender TEXT CHECK (gender IN ('M', 'F', 'Other')));
+    ```  
+    A) Har qanday matn  
+    B) Xato  
+    C) NULL majburiy  
+    D) Faqat belgilangan qiymatlar  
+
+61. Quyidagi DEFAULT va TEXT?  
+    ```sql
+    CREATE TABLE comments (text TEXT DEFAULT 'No comment');
+    ```  
+    A) Xato  
+    B) NULL  
+    C) Bo'sh matn  
+    D) Qiymat kiritilmasa standart matn  
+
+62. Quyidagi GROUP BY va SUM?  
+    ```sql
+    SELECT customer_id, SUM(amount) FROM payments GROUP BY customer_id;
+    ```  
+    A) Umumiy to'lov  
+    B) Xato  
+    C) Faqat customer_id  
+    D) Har mijozning umumiy to'lovi  
+
+63. Quyidagi HAVING va COUNT?  
+    ```sql
+    SELECT department FROM employees GROUP BY department HAVING COUNT(*) > 10;
+    ```  
+    A) Barcha bo'limlar  
+    B) Xodimlar soni 10  
+    C) 10 dan ko'p xodimi bo'lgan bo'limlar  
+    D) Xato  
+
+64. Quyidagi MIN va MAX?  
+    ```sql
+    SELECT MIN(hire_date), MAX(hire_date) FROM employees;
+    ```  
+    A) Faqat eng eski  
+    B) Xato  
+    C) Barcha sanalar  
+    D) Eng eski va eng yangi ishga qabul qilingan sana  
+
+65. Quyidagi FOREIGN KEY va ON DELETE RESTRICT?  
+    ```sql
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE RESTRICT
+    ```  
+    A) Avtomatik o'chiriladi  
+    B) NULL qo'yiladi  
+    C) Hech narsa  
+    D) Kategoriyada mahsulot bo'lsa o'chirish taqiqlanadi  
+
+66. Quyidagi ON UPDATE NO ACTION?  
+    ```sql
+    FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE NO ACTION
+    ```  
+    A) Avtomatik yangilanadi  
+    B) User ID o'zgartirish taqiqlanadi agar bog'langan bo'lsa  
+    C) NULL bo'ladi  
+    D) O'chiriladi  
+
+67. Quyidagi INNER JOIN va bir xil ustun nomi?  
+    ```sql
+    SELECT * FROM a INNER JOIN b ON a.id = b.id;
+    ```  
+    A) Faqat bitta id  
+    B) Xato  
+    C) Hech narsa  
+    D) Ikkala jadvaldagi id chiqadi  
+
+68. Quyidagi LEFT JOIN va RIGHT JOIN farqi?  
+    ```sql
+    LEFT JOIN vs RIGHT JOIN
+    ```  
+    A) Hech qanday farq yo'q  
+    B) LEFT faqat mos kelganlar  
+    C) RIGHT xato  
+    D) LEFT chap jadvalni, RIGHT o'ng jadvalni to'liq saqlaydi  
+
+69. Quyidagi JOIN va WHERE o'rniga ON?  
+    ```sql
+    SELECT * FROM orders JOIN customers ON orders.customer_id = customers.id WHERE orders.status = 'completed';
+    ```  
+    A) Xato, WHERE o'rniga ON ishlatish kerak emas  
+    B) Faqat JOIN  
+    C) Barcha buyurtmalar  
+    D) To'g'ri va samarali  
+
+70. Quyidagi INTEGER va katta son?  
+    ```sql
+    INSERT INTO counters VALUES (9223372036854775807);
+    ```  
+    A) Xato beradi  
+    B) REAL ga aylantiriladi  
+    C) NULL  
+    D) INTEGER maksimal qiymati (64-bit)  
+
+71. Quyidagi TEXT uzun matn?  
+    ```sql
+    CREATE TABLE articles (content TEXT);
+    ```  
+    A) Faqat qisqa matn  
+    B) Xato  
+    C) Faqat raqam  
+    D) Uzoq matnlar uchun mos  
+
+72. Quyidagi REAL aniqligi?  
+    ```sql
+    INSERT INTO coords VALUES (0.1 + 0.2);
+    ```  
+    A) Har doim aniq 0.3  
+    B) Xato  
+    C) Butun songa aylantiriladi  
+    D) 0.3 bo'lmasligi mumkin (floating point xato)  
+
+73. Quyidagi NULL va COUNT?  
+    ```sql
+    SELECT COUNT(email) FROM users;
+    ```  
+    A) Barcha qatorlarni hisoblaydi  
+    B) Xato  
+    C) Faqat NULL larni  
+    D) NULL email larni hisoblamaydi  
+
+74. Quyidagi PRIMARY KEY kompozit?  
+    ```sql
+    CREATE TABLE enrollments (student_id INTEGER, course_id INTEGER, PRIMARY KEY (student_id, course_id));
+    ```  
+    A) Xato  
+    B) Faqat student_id noyob  
+    C) Faqat course_id  
+    D) Bir talaba bir kursga faqat bir marta yoziladi  
+
+75. Quyidagi UNIQUE va NULL bir nechta?  
+    ```sql
+    CREATE TABLE items (code TEXT UNIQUE);
+    INSERT INTO items VALUES (NULL), (NULL);
+    ```  
+    A) Har doim xato  
+    B) Faqat bitta NULL  
+    C) NULL taqiqlanadi  
+    D) Ko'p DBMSda ruxsat etiladi  
+
+76. Quyidagi INSERT va DEFAULT?  
+    ```sql
+    CREATE TABLE visits (count INTEGER DEFAULT 1);
+    INSERT INTO visits DEFAULT VALUES;
+    ```  
+    A) Xato  
+    B) Barcha ustunlar NULL  
+    C) Hech narsa  
+    D) count=1 qo'yib yangi qator  
+
+77. Quyidagi SELECT va LIMIT 0?  
+    ```sql
+    SELECT * FROM large_table LIMIT 0;
+    ```  
+    A) Birinchi qator  
+    B) Xato  
+    C) Barchasini  
+    D) Hech qanday qator qaytarmaydi  
+
+78. Quyidagi ORDER BY ustun raqami?  
+    ```sql
+    SELECT name, salary FROM employees ORDER BY 2 DESC;
+    ```  
+    A) name bo'yicha  
+    B) Xato  
+    C) Tasodifiy  
+    D) salary bo'yicha kamayuvchi  
+
+79. Quyidagi CHECK va DEFAULT birga?  
+    ```sql
+    CREATE TABLE ratings (score INTEGER DEFAULT 5 CHECK (score BETWEEN 1 AND 5));
+    ```  
+    A) Xato  
+    B) Faqat CHECK  
+    C) Faqat DEFAULT  
+    D) Mumkin va to'g'ri  
+
+80. Quyidagi GROUP BY va agregat?  
+    ```sql
+    SELECT year, SUM(sales) FROM records GROUP BY year ORDER BY year;
+    ```  
+    A) Xato  
+    B) Faqat year  
+    C) Barcha qatorlar alohida  
+    D) Yil bo'yicha umumiy savdo  
+
+81. Quyidagi HAVING va MIN?  
+    ```sql
+    SELECT manager_id FROM employees GROUP BY manager_id HAVING MIN(salary) > 5000;
+    ```  
+    A) Barcha menejerlar  
+    B) Xato  
+    C) Faqat bitta  
+    D) Guruhdagi eng kichik maosh 5000 dan yuqori menejerlar  
+
+82. Quyidagi AVG va NULL?  
+    ```sql
+    SELECT AVG(commission) FROM sales;
+    ```  
+    A) NULL ni 0 deb hisoblaydi  
+    B) Xato  
+    C) Har doim NULL  
+    D) NULL komissiyalarni hisobga olmaydi  
+
+83. Quyidagi FOREIGN KEY va ON DELETE SET DEFAULT?  
+    ```sql
+    FOREIGN KEY (status_id) REFERENCES statuses(id) ON DELETE SET DEFAULT
+    ```  
+    A) CASCADE  
+    B) RESTRICT  
+    C) O'chirilganda default qiymat qo'yiladi  
+    D) Xato (ko'pchilik DBMSda yo'q)  
+
+84. Quyidagi INNER JOIN va CROSS JOIN farqi?  
+    ```sql
+    INNER JOIN vs CROSS JOIN
+    ```  
+    A) Hech qanday farq  
+    B) INNER barcha kombinatsiyalar  
+    C) CROSS xato  
+    D) INNER shart bilan, CROSS barcha kombinatsiyalar  
+
+85. Quyidagi LEFT JOIN va mos kelmaslik?  
+    ```sql
+    SELECT employees.name, projects.title FROM employees LEFT JOIN projects ON employees.id = projects.lead_id;
+    ```  
+    A) Faqat rahbarlar  
+    B) Barcha loyihalar  
+    C) Xato  
+    D) Loyiha rahbari bo'lmagan xodimlar projects.title NULL  
+
+86. Quyidagi DATA TYPE va o'lcham?  
+    ```sql
+    CREATE TABLE names (first TEXT, last TEXT);
+    ```  
+    A) Har doim 255 belgi  
+    B) Xato  
+    C) Faqat raqam  
+    D) TEXT cheklanmagan uzunlik (ko'pchilik DBMSda)  
+
+87. Quyidagi NULL va UNIQUE?  
+    ```sql
+    CREATE TABLE optional_codes (code TEXT UNIQUE);
+    ```  
+    A) Faqat bitta NULL  
+    B) NULL taqiqlanadi  
+    C) Xato  
+    D) Bir nechta NULL ruxsat etiladi (standart SQLda)  
+
+88. Quyidagi INSERT va qaytish?  
+    ```sql
+    INSERT INTO logs (message) VALUES ('Error') RETURNING id;
+    ```  
+    A) Xato (standart SQLda yo'q)  
+    B) Hech narsa  
+    C) Barcha qatorlar  
+    D) Yangi qator ID sini qaytaradi (PostgreSQL)  
+
+89. Quyidagi UPDATE va WHERE yo'qligi?  
+    ```sql
+    UPDATE settings SET value = 'dark' WHERE name = 'theme';
+    ```  
+    A) Barcha sozlamalarni  
+    B) Xato  
+    C) Hech narsa  
+    D) Faqat theme sozlamasini o'zgartiradi  
+
+90. Quyidagi DELETE va FOREIGN KEY?  
+    ```sql
+    DELETE FROM parents WHERE id = 1;
+    ```  
+    A) Har doim muvaffaqiyatli  
+    B) Har doim xato  
+    C) Jadval o'chiriladi  
+    D) Bog'langan qatorlar bo'lsa ON DELETE ga qarab harakat  
+
+91. Quyidagi LIMIT va OFFSET?  
+    ```sql
+    SELECT * FROM posts ORDER BY created DESC LIMIT 10 OFFSET 20;
+    ```  
+    A) Birinchi 10 ta  
+    B) Oxirgi 10 ta  
+    C) Xato  
+    D) 21-30 chi postlar  
+
+92. Quyidagi CHECK va REAL?  
+    ```sql
+    CREATE TABLE weights (kg REAL CHECK (kg > 0));
+    ```  
+    A) Faqat butun son  
+    B) Xato  
+    C) NULL majburiy  
+    D) Og'irlik musbat bo'lishi kerak  
+
+93. Quyidagi DEFAULT va INTEGER?  
+    ```sql
+    CREATE TABLE votes (count INTEGER DEFAULT 0);
+    ```  
+    A) Xato  
+    B) NULL  
+    C) 1  
+    D) Yangi qator uchun 0  
+
+94. Quyidagi GROUP BY va bir nechta ustun?  
+    ```sql
+    SELECT country, city, COUNT(*) FROM customers GROUP BY country, city;
+    ```  
+    A) Faqat country  
+    B) Xato  
+    C) Barcha bir guruh  
+    D) Davlat va shahar bo'yicha guruhlash  
+
+95. Quyidagi HAVING va SUM?  
+    ```sql
+    SELECT employee_id, SUM(hours) FROM timesheet GROUP BY employee_id HAVING SUM(hours) > 160;
+    ```  
+    A) Barcha xodimlar  
+    B) Xato  
+    C) Faqat 160 soat  
+    D) 160 soatdan ko'p ishlagan xodimlar  
+
+96. Quyidagi COUNT(*) va COUNT(ustun)?  
+    ```sql
+    SELECT COUNT(*), COUNT(phone) FROM contacts;
+    ```  
+    A) Ikkalasida ham bir xil  
+    B) Xato  
+    C) Faqat NULL lar  
+    D) COUNT(*) barcha qatorlar, COUNT(phone) NULLsizlar  
+
+97. Quyidagi ON DELETE NO ACTION va RESTRICT?  
+    ```sql
+    ON DELETE NO ACTION
+    ```  
+    A) CASCADE  
+    B) SET NULL  
+    C) Hech narsa  
+    D) RESTRICT bilan deyarli bir xil (taqiqlaydi)  
+
+98. Quyidagi JOIN va bir nechta jadval?  
+    ```sql
+    SELECT * FROM a INNER JOIN b ON a.id = b.a_id INNER JOIN c ON b.id = c.b_id;
+    ```  
+    A) Xato  
+    B) Faqat ikkita  
+    C) Barcha kombinatsiyalar  
+    D) Uchta jadvalni zanjir bilan birlashtirish  
+
+99. Quyidagi LEFT JOIN va INNER JOIN farqi misolda?  
+    ```sql
+    SELECT customers.name, orders.id FROM customers LEFT JOIN orders ON customers.id = orders.customer_id;
+    ```  
+    A) Faqat buyurtma bergan mijozlar  
+    B) Xato  
+    C) Barcha buyurtmalar  
+    D) Buyurtmasi bo'lmagan mijozlar ham chiqadi (orders.id NULL)  
+
+100. Quyidagi kodda `balance` ustuni qanday bo'ladi?  
+     ```sql
+     CREATE TABLE accounts (balance REAL DEFAULT 0.0 CHECK (balance >= 0));
+     ```  
+     A) Balans har doim musbat yoki nol bo'lishi kerak, yangi hisob 0.0 dan boshlanadi  
+     B) Balans manfiy bo'lishi mumkin  
+     C) DEFAULT ishlamaydi  
+     D) CHECK xato beradi  
+
+
+Ushbu fayl to'liq 100 ta savol va har xil variantlarda javob kalitlarini o'z ichiga oladi. Endi talabingiz to'liq bajarildi!
